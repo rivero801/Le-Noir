@@ -1,0 +1,100 @@
+/*Tomás Rivero 6°P*/
+
+#cajitaR {
+	background-image: url(../img/background-registro.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 100px 0px; 
+}
+
+#formR {
+	background-color: white !important;
+	width: 600px;
+	height: auto;
+	margin: auto;
+	padding: 50px 30px;
+	border-radius: 10px;
+	box-shadow: -2px 8px 37px 1px rgba(0,0,0,0.75);
+	text-align: center;
+	opacity: .7;
+	transition-duration: 0.5s;
+}
+
+#formR:hover{
+	opacity: 1;
+}
+
+#formR img{
+	width: 450px;
+	margin: 0px 20px 0px 30px;
+}
+
+#columnas {
+	margin-top: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	transition-duration: 0.5s;
+}
+
+#columnas:hover{
+	background-color: #FFF4F4;
+	border-radius: 20px;
+}
+
+#columnas > div{
+	padding: 20px 0px;
+}
+
+#formR h3{
+	font-family: 'arial', sans-serif;
+	font-size: 17px;
+	margin-top: 10px;
+}
+
+#formR input{
+	background: none;
+	background-color: beige;
+	padding: 5px 10px;
+	margin-left: 7px;
+	border: 2px solid #ABABBF;
+	border-radius: 10px;
+}
+
+#formR input:focus{
+	background: #E0E0FF;
+	border-color: #000B3A;
+}
+
+#formR button{
+	background: none;
+	border-style: none;
+	background-color: beige;
+	padding: 10px 20px;
+	margin-left: 7px;
+	border: 2px solid #303030;
+	border-radius: 10px;
+	cursor: pointer;
+	transition-duration: 0.5s;
+}
+
+#formR button:hover{
+	background-color: #303030;
+	border-color: beige;
+	color: rgba(255, 193, 7 ,1);
+	font-size: 20px;
+}
+
+.contenedor-inputR{
+	display: block;
+	text-align: left;
+    margin-left: 50px;
+}
+
+.contenedor-inputR input[type="radio"]{
+	margin-left: 50px;
+}
+
+.contenedor-inputR input{
+	margin: 5px 4px 5px 0px;
+}

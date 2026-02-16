@@ -1,0 +1,77 @@
+/*Tomás Rivero 6°P*/
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;1,600&display=swap');
+
+footer{
+	width: 100%;
+	padding: 50px 0px;
+	background-color: #303030;
+}
+
+.contenedor-footer{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: auto;
+	max-width: 1200px;
+}
+
+.box-footer{
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+}
+
+.box-footer .terms{
+	max-width: 350px;
+	margin-top: 20px;
+	font-weight: 500;
+	color: #7a7a7a;
+	font-size: 18px;
+}
+
+.box-footer h2{
+	margin-bottom: 30px;
+	color: rgba(255, 193, 7 ,1);
+	font-weight: 700;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+.box-footer a{
+	margin-top: 10px;
+	color: #7a7a7a;
+	font-weight: 600;
+	text-decoration: none;
+	font-family: 'Mulish', sans-serif;
+}
+
+.box-footer a:hover{
+	opacity: 0.8;
+}
+
+.box-footer a .icono{
+	font-size: 20px;
+	width: 32px;
+	margin-right: 10px;
+}
+
+.box-copyright{
+	max-width: 1200px;
+	margin: auto;
+	text-align: center;
+	padding: 0px 40px;
+}
+
+.box-copyright p{
+	margin-top: 20px;
+	color: #7a7a7a;
+}
+
+.box-copyright hr{
+	border: none;
+	height: 1px;
+	background-color: #7a7a7a;
+}
+

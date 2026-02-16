@@ -1,0 +1,83 @@
+/*Tomás Rivero 6°P*/
+
+#body-sesiones{
+	background-color: beige;
+}
+
+/*AHORA VAMOS CON EL GRID DE SESIONES*/
+
+#contenedor-sesiones{
+	width: 80%;
+	margin: 50px auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-auto-rows: 1fr;
+	grid-gap: 14px 14px;
+	align-items: center;
+}
+
+.gridsesiones{
+	height: auto;
+	border: 2px solid white;
+	transition-duration: 0.3s;
+	text-align: center;
+	background-color: #303030;
+}
+
+.gridsesiones img{
+	width: 100%;
+	height: 100%;
+	transition-duration: 0.3s;
+}
+
+.gridsesiones img:hover{
+	border-top-right-radius: 30px;
+	border-top-left-radius: 30px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Passions+Conflict&display=swap');
+/*fuente para los nombre de usuario*/
+.gridsesiones h3{
+	width: auto;
+	height: auto;
+	color: white;
+	transition-duration: 0.5s;
+	padding: 10px;
+	margin-bottom: 10px;
+	font-family: 'Passions Conflict', cursive;
+}
+
+.gridsesiones h3:hover{
+	font-size: 23px;
+	color: beige;
+}
+
+.gridsesiones a{
+	text-decoration: none;
+}
+
+.gridsesiones:hover{
+	border-color: rgba(255, 193, 7 ,1);
+	border-radius: 30px;
+}
+
+#botonsesiones{
+	text-align: center;
+}
+
+#botonsesiones button{
+	background: none;
+	cursor: pointer;
+	padding: 20px 30px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: 2px solid black;
+	transition-duration: 0.5s;
+	font-size: 18px;
+}
+
+#botonsesiones button:hover{
+	background-color: black;
+	border-color: white;
+	color: beige;
+}

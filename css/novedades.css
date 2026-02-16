@@ -1,0 +1,56 @@
+/*Tomás Rivero 6°P*/
+
+#main-novedades{
+	background-color: beige;
+	padding: 30px 0;
+}
+
+.contenedor-novedades{
+	width: 70%;
+	display: flex;
+	flex-wrap: wrap;
+	margin: 20px auto;
+	align-items: center;
+	background-color: white;
+	padding: 20px;
+	transition-duration: 0.5s;
+}
+.contenedor-novedades:hover{
+	box-shadow: 0px 0px 20px -4px rgba(0,0,0,0.75);
+	border-radius: 15px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+.contenedor-novedades h2{
+	font-family: 'Permanent Marker', cursive;
+}
+
+.contenedor-novedades a{
+	color: black;
+	text-decoration: none;
+	transition-duration: 0.3s;
+}
+
+.contenedor-novedades a:hover{
+	color: #303030;
+	text-decoration: underline;
+}
+
+.contenedor-novedades img{
+	width: 350px;
+	border: 2px solid black;
+	border-radius: 10px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
+.contenedor-novedades p{
+	margin-top: 50px;
+	width: 350px;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+.contenedor-novedades > div{
+	margin: 0px 50px;
+}

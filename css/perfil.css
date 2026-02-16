@@ -1,0 +1,142 @@
+/*Tomás Rivero 6°P*/
+
+/*caja de perfil*/
+#perfil{
+	background-color: beige;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	border-top: 4px solid white;
+}
+
+#descripcion{
+	width: 300px;
+}
+
+#descripcion h3{
+	padding-bottom: 20px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
+#descripcion p{
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+#perfil #esperfil{
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+#perfil > div{
+	margin: 0px 30px;
+}
+#follows{
+	display: flex;
+}
+
+#follows div{
+	margin: 0 20px;
+}
+
+#imgRedonda {
+	margin: 20px 0px;
+    width:150px;
+    height:150px;
+    border-radius:150px;
+    border:3px solid white;
+}
+
+#perfil > a > button{
+	padding: 8px 17px;
+	border-radius: 30px;
+	background-color: white;
+	color: black;
+	font-size: 16px;
+	font-family: 'arial', sans-serif;
+	transition-duration: 0.5s;
+	cursor: pointer;
+}
+
+#perfil > a > button:hover{
+	font-size: 18px;
+	background-color: rgba(255, 193, 7 ,1);
+	color: white;
+	border-color: white;
+}
+
+#perfil .contenedor-follows{
+	font-size: 15px;
+	text-align: center;
+	font-family: 'helvetica';
+}
+
+.contenedor-follows p{
+		padding: 7px;
+}
+
+.contenedor-follows button{
+	padding: 5px 20px;
+	border-radius: 10px;
+	background-color: #303030;
+	color: rgba(255, 193, 7 ,1);
+	font-size: 13px;
+	font-family: 'arial', sans-serif;
+	border: 2px solid rgba(255, 193, 7 ,1);
+	cursor: pointer;
+}
+
+.file-select {
+  	position: relative;
+  	display: inline-block;
+}
+
+.file-select::before {
+	background-color: #303030;
+	color: rgba(255, 193, 7 ,1);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid rgba(255, 193, 7 ,1);
+	border-radius: 3px;
+	content: 'Subir'; /* texto por defecto */
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.file-select input[type="file"] {
+	opacity: 0;
+	width: 90px;
+	height: 30px;
+	display: inline-block;
+}
+
+/*el contenedor grid como instagram*/
+
+#contenedor-perfil{
+	width: 80%;
+	margin: -80px auto 50px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-auto-rows: 1fr;
+	grid-gap: 14px 14px;
+}
+
+.gridperfil{
+	height: auto;
+}
+
+.gridperfil img{
+	width: 100%;
+	height: 100%;
+	border: 2px solid white;
+	transition-duration: 0.3s;
+}
+
+.gridperfil img:hover{
+	border-color: rgba(255, 193, 7 ,1);
+}
