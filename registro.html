@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
 	<link rel="stylesheet" type="text/css" href="css/header.css">
 	<link rel="stylesheet" type="text/css" href="css/registro.css">
+	<script src="js/registro.js" defer></script>
 </head>
 <body>
 	<header class="header-home">
@@ -29,7 +30,7 @@
 	</header>
 	<div id="cajitaR">
 		<div>
-			<form id="formR" action="index.html">
+			<form id="formR">
 				<img src="img/img-registro.jpg">
 				<h3>Ingrese su nombre</h3>
 				<input type="text" name="Nombre" placeholder="ej. Tomás">
@@ -37,8 +38,6 @@
 				<input type="text" name="Apellido" placeholder="ej. Rivero">
 				<div id="columnas">
 					<div>
-						<h3>Academia</h3>
-						<input type="text" name="academia" placeholder="(campo no obligatorio)">
 						<h3>Ingrese su correo electrónico</h3>
 						<input type="email" name="correo" placeholder="ej. tomy@latecnicalf.com.ar">
 						<h3>Ingrese su fecha de nacimiento</h3>
@@ -50,6 +49,12 @@
 							<div><input type="checkbox" name="idiomas" value="aleman">Alemán</div>
 							<div><input type="checkbox" name="idiomas" value="portugues">Portugués</div>
 						</div>
+						<input type="number" name="altura" placeholder="ej. 175 cm">
+						<select name="categoria">
+							<option value="fashion">Fashion</option>
+							<option value="comercial">Comercial</option>
+							<option value="fitness">Fitness</option>
+						</select>						
 					</div>
 					<div>
 						<h3>Pais de Origen</h3>
@@ -63,12 +68,11 @@
 						<input type="text" name="usuario" placeholder="ej. tomy.rivero">
 						<h3>Ingrese una contraseña para el Usuario</h3>
 						<input type="password" name="contraseña" placeholder="ej. 12345678">
-						<h3>Ingrese su documento</h3>
-						<input type="number" name="DNI" placeholder="11111111">
-						<h3>Ahora vamos a verificar su documento</h3>
-						<input type="file" name="imgDNI">
+						<textarea name="bio" placeholder="Contanos sobre vos..."></textarea>
 					</div>
 				</div>
+				<input type="file" id="fotoPerfil" accept="image/*">
+				<img id="previewFoto" width="150">
 				<br>
 				<button type="submit">Registrar</button>
 				<br>
