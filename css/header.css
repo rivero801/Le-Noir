@@ -60,7 +60,7 @@
 .navbar-links .dropdown-menu {
   display: none;
   position: absolute;
-  top: calc(100% + 1rem);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   background: var(--negro-3);
