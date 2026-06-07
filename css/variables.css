@@ -1,0 +1,62 @@
+/* ============================================
+   variables.css — Le Noir
+   Variables globales y reset base.
+   Importar PRIMERO en todas las páginas.
+   ============================================ */
+
+:root {
+  --negro:    #0a0a0a;
+  --negro-2:  #111111;
+  --negro-3:  #1a1a1a;
+  --dorado:   #c9a84c;
+  --dorado-2: #e8c878;
+  --crema:    #f5f0e8;
+  --gris:     #888888;
+  --gris-2:   #555555;
+  --blanco:   #ffffff;
+
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body:    'Montserrat', sans-serif;
+
+  --transition: all 0.35s ease;
+
+  --espacio-sm:  1rem;
+  --espacio-md:  2rem;
+  --espacio-lg:  4rem;
+  --espacio-xl:  6rem;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--negro);
+  color: var(--crema);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}

@@ -1,115 +1,182 @@
-/*Tomás Rivero 6°P*/
+/* ============================================
+   header.css — Le Noir
+   Navbar fija, hamburger, menú mobile.
+   ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;1,600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-
-*{
-	padding: 0px;
-	margin: 0px;
+/* ── Navbar ── */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3rem;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+  transition: var(--transition);
 }
 
-body::-webkit-scrollbar{
-	background-color: #303030;
-	width: 10px;
-	opacity: 0;
-	transition-duration: 0.4s;
+.navbar.scrolled {
+  background: rgba(10,10,10,0.97);
+  border-bottom: 1px solid rgba(201,168,76,0.15);
 }
 
-body::-webkit-scrollbar-thumb{
-	width: 6px;
-	background-color: #ffc107;
-	border-radius: 10px;
-	border-right: 2px solid #303030;
-	border-left: 2px solid #303030;
+/* Logo */
+.navbar-logo {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--dorado);
 }
 
-header li, header a, header button{
-	font-family: "Montserrat", sans-serif;
-	font-weight: 500;
-	font-size: 16px;
-	color: #edf0f1;
-	text-decoration: none;
-	background: none;
+/* Links de navegación */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
 }
 
-.general {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding:  30px 10%;
-	background-color: #303030;
+.navbar-links a {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--crema);
+  opacity: 0.75;
+  transition: var(--transition);
 }
 
-.logo a p{
-	cursor: pointer;
-	font-family: 'Great Vibes', cursive;
-	font-size: 50px;
-	transition-duration: 0.4s;
+.navbar-links a:hover {
+  opacity: 1;
+  color: var(--dorado);
 }
 
-.logo p{
-	font-family: 'Great Vibes', cursive;
-	font-size: 50px;
-	transition-duration: 0.4s;
-	color: white;
+/* Dropdown */
+.navbar-links .dropdown {
+  position: relative;
 }
 
-.logo:hover {
-	text-shadow: 0px 0px 10px rgba(255, 193, 7 ,0.8);
+.navbar-links .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 1rem);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--negro-3);
+  border: 1px solid rgba(201,168,76,0.2);
+  min-width: 160px;
+  padding: 0.5rem 0;
 }
 
-nav ul{
-	list-style: none;
+.navbar-links .dropdown:hover .dropdown-menu {
+  display: block;
 }
 
-nav > ul{
-	display: flex;
+.navbar-links .dropdown-menu a {
+  display: block;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  opacity: 0.8;
 }
 
-nav li a{
-	display: block;
-	padding: 0px 20px;
+.navbar-links .dropdown-menu a:hover {
+  background: rgba(201,168,76,0.08);
+  opacity: 1;
 }
 
-nav li ul{
-	display: none;
-	position: absolute;
-	background-color: rgba(48, 48, 48, 0.6);
+/* Botón perfil */
+.navbar-btn {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dorado);
+  border: 1px solid var(--dorado);
+  padding: 0.55rem 1.4rem;
+  background: transparent;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-nav li ul li >a{
-	padding: 15px 10px 0px;
+.navbar-btn:hover {
+  background: var(--dorado);
+  color: var(--negro);
 }
 
-nav li:hover > ul{
-	display: block;
+/* ── Hamburger ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
 }
 
-nav > li {
-	float: left;
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--crema);
+  transition: var(--transition);
 }
 
-nav li a{
-	transition: all 0.3s ease 0s;
+.hamburger.active span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
-nav > ul > li > a:hover{
-	color: #ffc107;
+/* ── Menú Mobile ── */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 99;
+  background: var(--negro-2);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
 }
 
-.box-perfil li a:hover{
-	background-color: #4C4C4C;
+.mobile-nav.open {
+  display: flex;
 }
 
-.general button{
-	padding: 9px 25px;
-	background-color: rgba(255, 193, 7 ,1);
-	border: none;
-	border-radius: 50px;
-	cursor: pointer;
-	transition: all 0.3s ease 0s;
+.mobile-nav a {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--crema);
+  opacity: 0.85;
+  transition: var(--transition);
 }
 
-.general button:hover {
-	background-color: rgba(255, 193, 7 ,0.7);
+.mobile-nav a:hover {
+  opacity: 1;
+  color: var(--dorado);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 1.2rem 1.5rem;
+  }
+  .navbar-links,
+  .navbar-btn {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
 }
