@@ -1,101 +1,102 @@
-document.addEventListener("DOMContentLoaded", () => {
-    iniciarApp();
-    const correoActivo = localStorage.getItem("usuarioActivo");
+/* ============================================
+   registro.js — Le Noir
+   - Preview de foto de perfil
+   - Mostrar / ocultar contraseña
+   ============================================ */
 
-    if (correoActivo) {
-        window.location.href = "perfil.html";
-    }
-});
+document.addEventListener('DOMContentLoaded', () => {
 
-function iniciarApp() {
-    console.log("App iniciada");
-    cargarPerfil();
-    eventos();
-}
+  /* ── Preview foto de perfil ── */
+  const inputFoto     = document.getElementById('fotoPerfil');
+  const preview       = document.getElementById('previewFoto');
+  const placeholder   = document.getElementById('fotoPlaceholder');
 
-function eventos() {
-    const botonGuardar = document.querySelector("#guardarPerfil");
-    
-    if (botonGuardar) {
-        botonGuardar.addEventListener("click", guardarPerfil);
-    }
-}
+  if (inputFoto && preview && placeholder) {
+    inputFoto.addEventListener('change', () => {
+      const file = inputFoto.files[0];
+      if (!file) return;
 
-function guardarPerfil() {
-    console.log("Guardando perfil...");
-}
-
-function cargarPerfil() {
-    console.log("Cargando perfil...");
-}
-
-// Recibimos información del formulario para guardarlo en el localstorage
-const form = document.querySelector("#formR");
-
-form.addEventListener("submit", function(e){
-    e.preventDefault();
-    crearUsuario();
-});
-
-function crearUsuario() {
-    const nuevoUsuario = {
-        nombre: document.querySelector("[name='Nombre']").value,
-        apellido: document.querySelector("[name='Apellido']").value,
-        correo: document.querySelector("[name='correo']").value.trim().toLowerCase(),
-        fechaNacimiento: document.querySelector("[name='fechaNac']").value,
-        pais: document.querySelector("[name='Pais']:checked")?.value || "",
-        usuario: document.querySelector("[name='usuario']").value.trim().toLowerCase(),
-        password: document.querySelector("[name='contraseña']").value,
-        altura: document.querySelector("[name='altura']")?.value || "",
-        categoria: document.querySelector("[name='categoria']")?.value || "",
-        bio: document.querySelector("[name='bio']")?.value || "",
-        idiomas: obtenerIdiomas()
-    };
-
-    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-    // VALIDAR EMAIL ÚNICO
-    const emailExiste = usuarios.some(u => u.correo === nuevoUsuario.correo);
-
-    // VALIDAR USUARIO ÚNICO
-    const usernameExiste = usuarios.some(u => u.usuario === nuevoUsuario.usuario);
-
-    if (emailExiste) {
-        alert("Ese correo ya está registrado.");
-        return;
-    }
-
-    if (usernameExiste) {
-        alert("Ese nombre de usuario ya existe.");
-        return;
-    }
-
-    console.log(nuevoUsuario); //MOSTRAMOS AL USUARIO QUE SE VAYA CARGANDO POR PANTALLA
-
-    usuarios.push(nuevoUsuario);
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
-    localStorage.setItem("usuarioActivo", JSON.stringify(nuevoUsuario.correo)); //INICIA SESIÓN EL MODELO, QUEDA LOGUEADO.
-
-    const mensaje = document.createElement("p");
-    mensaje.textContent = "Registro exitoso 🎉 Redirigiendo...";
-    mensaje.style.color = "green";
-
-    form.appendChild(mensaje);
-
-    setTimeout(() => {
-        window.location.href = "perfil.html";
-    }, 2000);
-};
-
-//Es para que el usuario pueda recorrer los items delchecklist, no se puede obtener de forma directa como el radioButton.
-function obtenerIdiomas() {
-    const checkboxes = document.querySelectorAll("[name='idiomas']:checked");
-    const idiomas = [];
-
-    checkboxes.forEach(check => {
-        idiomas.push(check.value); //funciona como un append
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+        placeholder.style.display = 'none';
+      };
+      reader.readAsDataURL(file);
     });
+  }
 
-    return idiomas;
-}
+  /* ── Mostrar / ocultar contraseña ── */
+  document.querySelectorAll('.toggle-password').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target;
+      const input    = document.getElementById(targetId);
+      if (!input) return;
+
+      const isPassword = input.type === 'password';
+      input.type = isPassword ? 'text' : 'password';
+
+      // Cambiar el ícono
+      const icon = btn.querySelector('.eye-icon');
+      if (icon) icon.textContent = isPassword ? '🙈' : '👁';
+    });
+  });
+
+  /* ── Validación básica antes de enviar ── */
+  const form = document.getElementById('formR');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nombre    = form.querySelector('#nombre')?.value.trim();
+      const apellido  = form.querySelector('#apellido')?.value.trim();
+      const email     = form.querySelector('#email')?.value.trim();
+      const usuario   = form.querySelector('#usuario')?.value.trim();
+      const password  = form.querySelector('#contrasena')?.value;
+
+      if (!nombre || !apellido || !email || !usuario || !password) {
+        mostrarMensaje('Por favor completá todos los campos obligatorios.', 'error');
+        return;
+      }
+
+      if (password.length < 8) {
+        mostrarMensaje('La contraseña debe tener al menos 8 caracteres.', 'error');
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        mostrarMensaje('El email ingresado no es válido.', 'error');
+        return;
+      }
+
+      // Todo OK — redirigir (cuando tengamos PHP, acá va el fetch al backend)
+      mostrarMensaje('¡Cuenta creada con éxito! Redirigiendo...', 'ok');
+      //setTimeout(() => { window.location.href = 'login.html'; }, 1800);
+    });
+  }
+
+  /* ── Helper: mostrar mensaje de feedback ── */
+  function mostrarMensaje(texto, tipo) {
+    // Remover mensaje anterior si existe
+    const anterior = document.querySelector('.form-mensaje');
+    if (anterior) anterior.remove();
+
+    const msg = document.createElement('p');
+    msg.className = 'form-mensaje';
+    msg.textContent = texto;
+    msg.style.cssText = `
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      margin-top: 1rem;
+      padding: 0.8rem 1rem;
+      border-left: 2px solid ${tipo === 'ok' ? '#c9a84c' : '#c0392b'};
+      color: ${tipo === 'ok' ? '#c9a84c' : '#e74c3c'};
+      background: ${tipo === 'ok' ? 'rgba(201,168,76,0.06)' : 'rgba(192,57,43,0.08)'};
+    `;
+
+    const submitDiv = document.querySelector('.form-submit');
+    if (submitDiv) submitDiv.appendChild(msg);
+  }
+
+});
