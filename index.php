@@ -1,53 +1,26 @@
-<!--Tomás Rivero — Le Noir Rediseño-->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Le Noir — Model Agency</title>
+<?php
+/* ============================================
+   registro.php — Le Noir
+   Muestra el formulario Y procesa el envío.
+   ============================================ */
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+session_start();
 
-  <!-- CSS: variables primero, luego header, footer y cuerpo -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/home.css">
+// Si ya está logueado, redirigir al perfil
+if (isset($_SESSION['usuario_id'])) {
+    header('Location: perfil.php');
+    exit;
+}
 
-  <!-- JS -->
-  <script src="js/main.js" defer></script>
-</head>
-<body>
+require_once 'config/db.php';
 
-  <!-- HEADER — igual en todas las páginas -->
-  <nav class="navbar" id="navbar">
-    <a href="index.html" class="navbar-logo">Le Noir</a>
-    <ul class="navbar-links">
-      <li class="dropdown">
-        <a href="#">Opciones</a>
-        <ul class="dropdown-menu">
-          <li><a href="login.html">Iniciar sesión</a></li>
-          <li><a href="registro.html">Registrarse</a></li>
-          <li><a href="index.html">Cerrar sesión</a></li>
-        </ul>
-      </li>
-      <li><a href="sesiones.html">Sesiones</a></li>
-      <li><a href="novedades.html">Novedades</a></li>
-    </ul>
-    <a href="perfil.html"><button class="navbar-btn">Perfil</button></a>
-    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+// ── Variables para el header ──
+$titulo    = 'home';
+$css_extra = 'home.css';
+$js_extra  = 'main.js';
 
-  <div class="mobile-nav" id="mobileNav">
-    <a href="login.html">Iniciar sesión</a>
-    <a href="registro.html">Registrarse</a>
-    <a href="sesiones.html">Sesiones</a>
-    <a href="novedades.html">Novedades</a>
-    <a href="perfil.html">Perfil</a>
-  </div>
+require_once 'includes/header.php';
+?>
 
 
   <!-- CUERPO — exclusivo de index.html -->

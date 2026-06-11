@@ -2,20 +2,20 @@
    registro.js — Le Noir
    - Preview de foto de perfil
    - Mostrar / ocultar contraseña
+   - Validación básica antes de enviar
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Preview foto de perfil ── */
-  const inputFoto     = document.getElementById('fotoPerfil');
-  const preview       = document.getElementById('previewFoto');
-  const placeholder   = document.getElementById('fotoPlaceholder');
+  const inputFoto   = document.getElementById('fotoPerfil');
+  const preview     = document.getElementById('previewFoto');
+  const placeholder = document.getElementById('fotoPlaceholder');
 
   if (inputFoto && preview && placeholder) {
     inputFoto.addEventListener('change', () => {
       const file = inputFoto.files[0];
       if (!file) return;
-
       const reader = new FileReader();
       reader.onload = (e) => {
         preview.src = e.target.result;
@@ -29,58 +29,59 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Mostrar / ocultar contraseña ── */
   document.querySelectorAll('.toggle-password').forEach(btn => {
     btn.addEventListener('click', () => {
-      const targetId = btn.dataset.target;
-      const input    = document.getElementById(targetId);
+      const input = document.getElementById(btn.dataset.target);
       if (!input) return;
-
       const isPassword = input.type === 'password';
       input.type = isPassword ? 'text' : 'password';
-
-      // Cambiar el ícono
       const icon = btn.querySelector('.eye-icon');
       if (icon) icon.textContent = isPassword ? '🙈' : '👁';
     });
   });
 
-  /* ── Validación básica antes de enviar ── */
+  /* ── Validación antes de enviar ── */
   const form = document.getElementById('formR');
+
   if (form) {
     form.addEventListener('submit', (e) => {
-      e.preventDefault();
 
-      const nombre    = form.querySelector('#nombre')?.value.trim();
-      const apellido  = form.querySelector('#apellido')?.value.trim();
-      const email     = form.querySelector('#email')?.value.trim();
-      const usuario   = form.querySelector('#usuario')?.value.trim();
-      const password  = form.querySelector('#contrasena')?.value;
+      // Limpiar mensaje anterior
+      document.querySelector('.form-mensaje')?.remove();
 
+      const nombre   = document.getElementById('nombre')?.value.trim();
+      const apellido = document.getElementById('apellido')?.value.trim();
+      const email    = document.getElementById('email')?.value.trim();
+      const usuario  = document.getElementById('usuario')?.value.trim();
+      const password = document.getElementById('contrasena')?.value;
+
+      // ── Campos obligatorios ──
       if (!nombre || !apellido || !email || !usuario || !password) {
+        e.preventDefault(); // ← frena el envío
         mostrarMensaje('Por favor completá todos los campos obligatorios.', 'error');
         return;
       }
 
+      // ── Longitud contraseña ──
       if (password.length < 8) {
+        e.preventDefault();
         mostrarMensaje('La contraseña debe tener al menos 8 caracteres.', 'error');
         return;
       }
 
+      // ── Formato email ──
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
+        e.preventDefault();
         mostrarMensaje('El email ingresado no es válido.', 'error');
         return;
       }
 
-      // Todo OK — redirigir (cuando tengamos PHP, acá va el fetch al backend)
-      mostrarMensaje('¡Cuenta creada con éxito! Redirigiendo...', 'ok');
-      //setTimeout(() => { window.location.href = 'login.html'; }, 1800);
+      // Si llegó hasta acá, todo OK → el form se envía solo a registro.php
     });
   }
 
-  /* ── Helper: mostrar mensaje de feedback ── */
+  /* ── Helper: mostrar mensaje ── */
   function mostrarMensaje(texto, tipo) {
-    // Remover mensaje anterior si existe
-    const anterior = document.querySelector('.form-mensaje');
-    if (anterior) anterior.remove();
+    document.querySelector('.form-mensaje')?.remove();
 
     const msg = document.createElement('p');
     msg.className = 'form-mensaje';
@@ -95,8 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       background: ${tipo === 'ok' ? 'rgba(201,168,76,0.06)' : 'rgba(192,57,43,0.08)'};
     `;
 
-    const submitDiv = document.querySelector('.form-submit');
-    if (submitDiv) submitDiv.appendChild(msg);
+    document.querySelector('.form-submit')?.appendChild(msg);
   }
 
 });
